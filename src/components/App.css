@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+  padding: 40px;
+  background-color: #E5E5E5;
+  height: 100%;
+}
+
+.title {
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-weight: 600;
+
+  color: #6E6893;
+}
+
+.table-tabs {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.total {
+  color: #6E6893;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
