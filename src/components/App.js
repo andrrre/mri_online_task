@@ -3,7 +3,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import './App.css';
-import EnhancedTableHead from  '../components/Table';
+import EnhancedTable from  '../components/Table';
 
 import axios from "axios";
 
@@ -31,8 +31,8 @@ function App() {
             <div className="table-tabs">
                 <Tabs
                     value={value}
-                    indicatorColor="primary"
-                    textColor="primary"
+                    TabIndicatorProps={{style: {background:'black'}}}
+                    textColor="black"
                     onChange={handleChange}
                     aria-label="tabs"
                 >
@@ -42,7 +42,7 @@ function App() {
                 <div className="total">Total orders: <strong>$900.00</strong> USD</div>
             </div>
             <div className="table">
-                {value ? <EnhancedTableHead/> : <EnhancedTableHead/>}
+                {!value ? <EnhancedTable data={data}/> : <EnhancedTable data={data.filter((el) =>el.status === 'shipped')}/>}
             </div>
         </div>
     );
