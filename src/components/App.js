@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
 import './App.css';
-import EnhancedTable from  '../components/Table';
+import EnhancedTable from './Table/TableMain';
 
 import axios from "axios";
 
 function App() {
     const [data, setData] = useState([]);
 
-    axios.get('https://gist.githubusercontent.com/ryanjn/07512cb1c008a5ec754aea6cbbf4afab/raw/eabb4d324270cf0d3d17a79ffb00ff3cfaf9acc3/orders.json')
-        .then((res) => setData(res.data));
+    useEffect(() => {
+        axios.get('https://gist.githubusercontent.com/ryanjn/07512cb1c008a5ec754aea6cbbf4afab/raw/eabb4d324270cf0d3d17a79ffb00ff3cfaf9acc3/orders.json')
+            .then((res) => {
+                setData(res.data)
+            });
+    }, [])
 
     const [value, setValue] = useState(0);
 
@@ -31,7 +35,7 @@ function App() {
             <div className="table-tabs">
                 <Tabs
                     value={value}
-                    TabIndicatorProps={{style: {background:'black'}}}
+                    TabIndicatorProps={{style: {background: 'black'}}}
                     textColor="black"
                     onChange={handleChange}
                     aria-label="tabs"
@@ -42,7 +46,11 @@ function App() {
                 <div className="total">Total orders: <strong>$900.00</strong> USD</div>
             </div>
             <div className="table">
-                {!value ? <EnhancedTable data={data}/> : <EnhancedTable data={data.filter((el) =>el.status === 'shipped')}/>}
+                {
+                    !value
+                        ? <EnhancedTable data={data}/>
+                        : <EnhancedTable data={data.filter((el) => el.status === 'shipped')}/>
+                }
             </div>
         </div>
     );
