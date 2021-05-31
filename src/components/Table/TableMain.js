@@ -67,7 +67,7 @@ const EnhancedTable = ({data}) => {
                             page={page}
                             rowsPerPage={rowsPerPage}
                             selected={selected}
-                            setSelected={selected}
+                            setSelected={setSelected}
                         />
                     </Table>
                 </TableContainer>

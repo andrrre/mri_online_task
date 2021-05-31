@@ -30,13 +30,13 @@ const descendingComparator = (a, b, orderBy) => {
     return 0;
 }
 
-export const getComparator = (order, orderBy) => {
+const getComparator = (order, orderBy) => {
     return order === 'desc'
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-export const stableSort = (array, comparator) => {
+const stableSort = (array, comparator) => {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0]);
@@ -45,3 +45,5 @@ export const stableSort = (array, comparator) => {
     });
     return stabilizedThis.map((el) => el[0]);
 }
+
+module.exports = {descendingComparator, getComparator, stableSort};
